@@ -1,0 +1,292 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: rgb(57, 53, 63);
+  font-size: 30px;
+  font-weight: 7000;
+  background: #7768684f;
+}
+
+.Backgroud-red{
+  background-color: #333333d9;
+  height: 200vh;
+  color:#ffffffcf;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.text {
+  background-color: #00000000;
+  color: #b3b7d6;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  align-items: center;
+  text-decoration: none;
+  border: 0;
+}
+
+.text:hover {
+  background-color: #00000000;
+  color: #ffffff;
+}
+
+.text_two {
+  background-color: #00000000;
+  color: #33333380;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  align-items: center;
+  text-decoration: none;
+  border: 0;}
+
+.text_two:hover {
+  color: #ffc23e;
+}
+
+.text_three {
+  background-color: #00000000;
+  color: #3333333a;
+  max-height: 40px;
+  padding: 1px 40px;
+  font-size: 30px;
+  align-items: center;
+  text-decoration: none;
+  border: 0;}
+
+.button {
+  font-size: 30px;
+  text-align: center;
+
+  color: rgb(255, 255, 255);
+  background-color: #6f6582;
+  display: inline-block;
+  border: 0;
+  font-weight: 900;
+  padding: 1px 40px;
+  text-decoration: none;
+
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.buttonn {
+  font-size: 30px;
+  text-align: center;
+
+  color: rgb(111, 101, 130);
+  background-color: #ffc23e;
+  display: inline-block;
+  border: 0;
+  font-weight: 900;
+  padding: 1px 40px;
+  text-decoration: none;
+
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.button:hover {
+  color: rgb(111, 101, 130);
+  background-color: #ffc23e;
+}
+
+.buttons {
+  font-size: 30px;
+  text-align: center;
+  font-family: monospace;
+  color: #ffffffe0;
+  background-color: #797286a4;
+  display: inline-block;
+  border: 0;
+  font-weight: 900;
+  padding: 1px 40px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.buttons:hover {
+  color: rgb(111, 101, 130);
+  background-color: #ffc23ee0;
+}
+
+.button2 {
+  font-family: monospace;
+  color: #26222b;
+  background-color: #ffffffb6;
+  border: 0;
+  display: inline-block;
+}
+
+.input {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  width: 340px;
+  border: 0;
+}
+
+.input3 {
+  height: 100px;
+
+  color: rgb(0, 0, 0);
+  font-size: 30px;
+  width: 340px;
+  border: 0;
+}
+
+
+.navbar {
+  height: 60px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navbar2 {
+  height: 60px;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.btn {
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 50%;
+  color: rgb(255, 255, 255);
+  background-color: #6e6482;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border: 0;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.btn:hover {
+  color: rgb(111, 101, 130);
+  background-color: #ffc23ee0;
+}
+
+.btn2 {
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+  font-size: 1em;
+  font-weight: bold;
+  border-radius: 50%;
+  color: rgb(111, 101, 130);
+  background-color: #ffc23ee0;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  border: 0;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.message {
+  max-height: 40px;
+  width: 200px;
+  text-align:center;
+  overflow-y: auto;
+  background-color: #6e64824f;
+}
+
+.message2 {
+  max-height: 40px;
+  width: 250px;
+  text-align:center;
+  overflow-y: auto;
+  color: rgb(255, 255, 255);
+  background-color: #6e6482;
+}
+
+.message3 {
+  max-height: 300px;
+  width: 365px;
+  overflow-y: auto;
+  background-color: #6e64824f;
+}
+
+.message4 {
+  max-height: 300px;
+  width: 523px;
+  overflow-y: auto;
+  background-color: #6e64824f;
+}
+
+.flex{
+  display:-webkit-flex;
+-webkit-align-items: baseline;
+display: flex;
+align-items: baseline;
+}
+
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+}
+
+.message {
+  max-height: 800px;
+  width: 665px;
+  border-radius: 50px;
+  overflow-y: auto;
+  background-color: #31313141;
+}
+
+.message_two5 {
+  max-height:1000px;
+  width: 665px;
+  overflow-y: auto;
+  background-color: #31313141;
+}
+
+.navbar_two {
+  height: 60px;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+}
+
+.inputs {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid #999;
+  transition: 0.2s all linear;
+  outline: none;
+  margin-right: 5px;
+
+  position: relative;
+  top: 4px;
+}
+
+.inputs:checked {
+  border: 6px solid #ffc23e;
+}

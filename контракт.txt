@@ -1,0 +1,311 @@
+// SPDX-License-Identifier: GPL-3.0
+//SPDX-License-Identifier: Alexei & Andrei
+
+pragma solidity ^ 0.6.0;
+
+    contract World {
+        
+    struct ID_card {
+        uint day;
+        uint month;
+        uint year;
+        string category;
+        uint timer;
+        address addr;}
+    struct transport {
+        string [] category;
+        uint [] vin;
+        uint [] price;
+        uint [] srok;
+        uint [] insurance;}
+    struct info_user {
+        string number;
+        string FIO;
+        uint expertise;
+        bool color;
+        uint role;
+        uint debt;}
+    struct quantity {
+        uint tran;
+        uint messeg;
+        uint leng_DTP;
+        uint leng_FINE;
+        uint donation;
+        uint fine;}
+    struct messages_DPS {
+        uint time;
+        string condition;
+        string number;
+        address addr;}
+    struct messages_CLIENT {
+        string[] text;
+        uint[] time;}
+    struct fine {
+        string [] culprit;
+        uint [] vin;
+        string [] text;
+        uint [] price;
+        uint [] time;
+        string [] condition;
+        uint [] DTP_FINE;
+        address addr;}
+    struct request_for_insurance {
+        address addr;
+        uint vin;
+        uint insurance;
+        uint time;
+        string condition;}
+    struct REQUEST {
+        uint sum;
+        uint minut;
+        uint time;
+        string condition;
+        address addr;}
+    
+    mapping(address => info_user) us;
+    mapping(address => transport) trans;
+    mapping(string => address) log;
+    mapping(string => address) num;
+    mapping(string => ID_card) card;
+    mapping(address => quantity) sum;
+    mapping(address => messages_CLIENT) CLIENT;
+    mapping(string => fine) fi;
+    messages_DPS[] DPS;
+    request_for_insurance[] rfi;
+    REQUEST[] req;
+    uint [] VINS;
+
+    constructor() public {
+        us[0xc5f1731B0efF9aD42D60F2c8C34F51f6d5041Cb3] = info_user("NO", "Иванов Иван Иванович", 2, true, 1, 0);
+        us[0x0000000000000000000000000000000000000000] = info_user("NO", "Семенов Семен Семенович", 5, false, 2, 0);
+        us[0x5288fF9999907DE463a302a6e3607923aC717dC8] = info_user("", "", 0, false, 3, 0);
+        us[0x3aD17EF0b0c3f461E7544c07C2de4b256C5e6b55] = info_user("", "", 0, false, 4, 0);
+
+        log["aaa"] = 0xc5f1731B0efF9aD42D60F2c8C34F51f6d5041Cb3;
+        log["bbb"] = 0x5288fF9999907DE463a302a6e3607923aC717dC8;
+        log["ccc"] = 0x3aD17EF0b0c3f461E7544c07C2de4b256C5e6b55;
+        
+        num["000"] = 0x0000000000000000000000000000000000000000;
+        num["111"] = 0x0000000000000000000000000000000000000000;
+        num["222"] = 0x0000000000000000000000000000000000000000;
+        num["333"] = 0x0000000000000000000000000000000000000000;
+        num["444"] = 0x0000000000000000000000000000000000000000;
+        num["555"] = 0x0000000000000000000000000000000000000000;
+        num["666"] = 0x0000000000000000000000000000000000000000;
+
+        card["000"] = ID_card(11, 1, 2021, "A", 0,  0x0000000000000000000000000000000000000000);
+        card["111"] = ID_card(12, 5, 2025, "B", 0,  0x0000000000000000000000000000000000000000);
+        card["222"] = ID_card(12, 9, 2020, "C", 0,  0x0000000000000000000000000000000000000000);
+        card["333"] = ID_card(13, 2, 2027, "A", 0,  0x0000000000000000000000000000000000000000);
+        card["444"] = ID_card(11, 1, 2026, "B", 0,  0x0000000000000000000000000000000000000000);
+        card["555"] = ID_card(24, 6, 2029, "C", 0,  0x0000000000000000000000000000000000000000);
+        card["666"] = ID_card(31, 3, 2030, "A", 0,  0x0000000000000000000000000000000000000000);}
+        
+    function Authorization(string memory login) public view returns(address, string memory, uint, bool, uint, string memory) {
+        require(log[login] != 0x0000000000000000000000000000000000000000);
+        return (log[login], us[log[login]].FIO, us[log[login]].expertise, us[log[login]].color, us[log[login]].role, us[log[login]].number);}
+        
+    function Numb(string memory nums) public view returns(address) {
+        return (num[nums]);}
+        
+    function Registration(string memory FIO, uint expertise, string memory login) public payable {
+        require(log[login] == 0x0000000000000000000000000000000000000000);
+        us[msg.sender] = info_user("NO", FIO, expertise, false, 2, 0);
+        log[login] = msg.sender;}
+
+    function Length() public view returns(uint, uint, uint, uint, uint, uint, uint) {
+        return (sum[msg.sender].tran, DPS.length, sum[msg.sender].messeg, sum[msg.sender].fine, rfi.length, req.length, us[msg.sender].debt);}
+
+    function Messages_DPS(uint i) public view returns(string memory, uint, uint, uint, string memory, uint) {
+        i--;
+        return (DPS[i].number, card[DPS[i].number].day, card[DPS[i].number].month, card[DPS[i].number].year, DPS[i].condition, DPS[i].time);}
+        
+    function Request_For_Insurance(uint i) public view returns(address, uint, uint, uint, string memory) {
+        i--;
+        return (rfi[i].addr, rfi[i].insurance, rfi[i].vin, rfi[i].time, rfi[i].condition);}
+
+    function Messages_CLIENT(uint i) public view returns(string memory, uint) {
+        i--;
+        return (CLIENT[msg.sender].text[i], CLIENT[msg.sender].time[i]);}
+
+    function Color() public payable {
+        if (us[msg.sender].color == true)
+            us[msg.sender].color = false;
+        else
+            us[msg.sender].color = true;}
+
+    function Card() public view returns(string memory, uint, uint, uint, string memory) {
+        return (us[msg.sender].number, card[us[msg.sender].number].day, card[us[msg.sender].number].month, card[us[msg.sender].number].year, card[us[msg.sender].number].category);}
+
+    function Transport(uint i) public view returns(string memory, uint, uint, uint, uint) {
+        i--;
+        return (trans[msg.sender].category[i], trans[msg.sender].price[i], trans[msg.sender].srok[i], trans[msg.sender].vin[i], trans[msg.sender].insurance[i]);}
+        
+    function Viewing_REQEST(uint i) public view returns(uint, uint, uint, string memory, address){
+        i--;
+        return (req[i].sum, req[i].minut, req[i].time, req[i].condition, req[i].addr);}
+    
+    function Fine(uint i) public view returns(string memory, uint, uint, uint, string memory, string memory, uint) {
+        i--;
+        return(fi[us[msg.sender].number].text[i], fi[us[msg.sender].number].price[i], fi[us[msg.sender].number].time[i], 
+        fi[us[msg.sender].number].DTP_FINE[i], fi[us[msg.sender].number].condition[i], fi[us[msg.sender].number].culprit[i], fi[us[msg.sender].number].vin[i]);}
+
+    function Completion_card(string memory number, uint day, uint month, uint year, string memory category) public {
+        require(card[number].addr == 0x0000000000000000000000000000000000000000 && keccak256(abi.encode(us[msg.sender].number)) == keccak256(abi.encode("NO")), "1");
+        require (card[number].day == day && card[number].month == month && card[number].year == year && keccak256(abi.encode(card[number].category)) == keccak256(abi.encode(category)), "2");
+        card[number].addr = msg.sender;
+        num[number] = msg.sender;
+        us[msg.sender].number = number;
+        sum[msg.sender].messeg++;
+        CLIENT[msg.sender].text.push("Данные водительского удостоверения успешно сохранены.");
+        CLIENT[msg.sender].time.push(block.timestamp);}
+
+    function Registration_transport(string memory category, uint price, uint srok, uint vin) public{
+        require(keccak256(abi.encode(card[us[msg.sender].number].category)) == keccak256(abi.encode(category)));
+        for (uint i = 0; i < VINS.length; i++) {
+            require(keccak256(abi.encode(VINS[i])) !=  keccak256(abi.encode(vin)));
+        }
+        VINS.push(vin);
+        uint i = sum[msg.sender].tran++;
+        i++;
+        trans[msg.sender].category.push(category);
+        trans[msg.sender].vin.push(vin);
+        trans[msg.sender].price.push(price);
+        trans[msg.sender].srok.push(srok);
+        trans[msg.sender].insurance.push(0);
+        sum[msg.sender].messeg++;
+        CLIENT[msg.sender].text.push("Транспортное средство успешно зарегистрировано.");
+        CLIENT[msg.sender].time.push(block.timestamp);}
+
+    function Request_extension() public {
+        require(card[us[msg.sender].number].timer < block.timestamp && card[us[msg.sender].number].timer != 1);
+        sum[msg.sender].messeg++;
+        card[us[msg.sender].number].timer = 1;
+        CLIENT[msg.sender].text.push("Запрос на продление водительского удостоверения отправлен.");
+        CLIENT[msg.sender].time.push(block.timestamp);
+        DPS.push(messages_DPS(block.timestamp, "Ожидает ответа", us[msg.sender].number, msg.sender));}
+
+    function Request_extension(uint i, uint answer) public payable {
+        i--;
+        sum[DPS[i].addr].messeg++;
+        if (answer == 1) {
+            require(block.timestamp - 2629743 - 86400 < (((card[us[DPS[i].addr].number].year - 1970) * 31556926) + (card[us[DPS[i].addr].number].month * 2629743) + (card[us[DPS[i].addr].number].day * 86400)), "1");
+            card[us[DPS[i].addr].number].year += 10;
+            CLIENT[msg.sender].text.push("Успешное продление водительского удостоверения.");
+            CLIENT[msg.sender].time.push(block.timestamp);}
+
+        else {
+            require(block.timestamp - 2629743 - 86400 > (((card[us[DPS[i].addr].number].year - 1970) * 31556926) + (card[us[DPS[i].addr].number].month * 2629743) + (card[us[DPS[i].addr].number].day * 86400)), "2");
+            CLIENT[msg.sender].text.push("Отказ на продление водительского удостоверения.");
+            CLIENT[msg.sender].time.push(block.timestamp);}
+        card[us[DPS[i].addr].number].timer = block.timestamp + (1 * 60);
+        DPS[i].condition = "Ответ отправлен";}
+        
+    function Issuing_a_fine(string memory number, string memory text, uint price, uint DTP_FINE, uint vin, string memory culprit) public {
+        require(card[number].addr != 0x0000000000000000000000000000000000000000 && card[culprit].addr != 0x0000000000000000000000000000000000000000);
+        uint a = 0;
+        for (uint i = 0; i < VINS.length; i++) {
+            if (VINS[i] ==  vin) {
+                a++;
+                sum[card[number].addr].fine++;
+                fi[number].vin.push(vin);
+                fi[number].text.push(text);
+                fi[number].price.push(price);
+                fi[number].time.push(block.timestamp);
+                fi[number].condition.push("Ожидает оплаты");
+                fi[number].DTP_FINE.push(DTP_FINE);
+                fi[number].addr = card[number].addr;
+                fi[number].culprit.push(culprit);
+                us[card[number].addr].expertise++;}}
+            require(a != 0);}
+            
+    function Insurance(uint vin) public view returns (uint){
+        uint sht = 0;
+        uint dtp = 0;
+        uint s = 0;
+        for (uint i = 0; i < sum[msg.sender].fine; i++) {
+            if (fi[us[msg.sender].number].vin[i] == vin) {
+                if (fi[us[msg.sender].number].DTP_FINE[i] == 1)
+                    dtp++;
+                if (fi[us[msg.sender].number].DTP_FINE[i] == 2 && keccak256(abi.encode(fi[us[msg.sender].number].condition[i])) == keccak256(abi.encode("Ожидает оплаты")))
+                    sht++;
+            }}
+        for (uint j = 0; j < sum[msg.sender].tran; j++) {
+            if (trans[msg.sender].vin[j] == vin)
+                s = 100*(trans[msg.sender].price[j] * (1 - trans[msg.sender].srok[j]/10) * 1 / 10 +sht * 2 / 10 + dtp - us[msg.sender].expertise * 2 / 10);
+        }
+        return(s);
+    }
+    
+    function strahovka_vznos( uint vin, uint su) public {
+        for (uint i = 0; i < rfi.length; i++) {
+            require(rfi[i].addr != msg.sender);
+        }
+        rfi.push(request_for_insurance(msg.sender, vin, su, block.timestamp, "Ожидает ответа"));
+        sum[msg.sender].messeg++;
+        CLIENT[msg.sender].text.push("Запрос на оформление страховки отправлен.");
+        CLIENT[msg.sender].time.push(block.timestamp);
+    }
+    
+    function Answer(uint i, uint vin, uint su, uint answer) public {
+        i--;
+        rfi[i].condition = "Ответ отправлен";
+        for (uint j = 0; j < sum[rfi[i].addr].tran; j++) {
+            if (trans[rfi[i].addr].vin[j] == vin) {
+                if (answer == 1)
+                    trans[rfi[i].addr].insurance[j] = su*10;
+            }
+        }
+        sum[rfi[i].addr].messeg++;
+        CLIENT[rfi[i].addr].text.push("Страховка оформлена.");
+        CLIENT[rfi[i].addr].time.push(block.timestamp);
+        rfi[i].addr = 0x0000000000000000000000000000000000000000;}
+    
+    function dtp_pay(uint i) public {
+        i--;
+        fi[us[msg.sender].number].condition[i] = "Оплачено";}
+        
+    function check(uint i) public view returns (string memory){
+        i--;
+        uint a = fi[us[msg.sender].number].time[i];
+        string memory b;
+        if (a + 50 > block.timestamp)
+            b = "Скидка";
+        else
+            b = "Без скидки";
+        return(b);
+    }
+    
+    function Request_loan(uint s, uint minut) public{
+        for (uint i = 0; i < req.length; i++) {
+            require(req[i].addr != msg.sender);
+        }
+        req.push(REQUEST(s, minut, block.timestamp, "Ожидает ответа", msg.sender));
+        sum[msg.sender].messeg++;
+        CLIENT[msg.sender].text.push("Запрос на займ отправлен.");
+        CLIENT[msg.sender].time.push(block.timestamp);}
+        
+    function Answer_Request_loan(uint i, uint answer) public{
+        i--;
+        req[i].condition = "Ответ отправлен";
+        sum[req[i].addr].messeg++;
+        CLIENT[req[i].addr].time.push(block.timestamp);
+        if (answer == 1) {
+            us[req[i].addr].debt = req[i].sum*10;
+            CLIENT[req[i].addr].text.push("Кредит одобрен.");}
+        else
+            CLIENT[req[i].addr].text.push("Запросна кредит откланён.");}
+            
+    function Payment() public {
+        for (uint i = 0; i < req.length; i++) {
+            if (req[i].addr != msg.sender)
+               req[i].addr =  0x0000000000000000000000000000000000000000;
+        }
+        us[msg.sender].debt = 0;
+        sum[msg.sender].messeg++;
+        CLIENT[msg.sender].text.push("Кредит оплачен.");
+        CLIENT[msg.sender].time.push(block.timestamp);
+    }
+    
+    
+}
